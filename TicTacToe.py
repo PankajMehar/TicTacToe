@@ -11,7 +11,7 @@ def draw_board(board):
     print(" " + board[6] + " | " + board[7] + " | " + board[8] + " ")  # Bottom Row
 
 
-# Function to choose what marker the players would like
+# Function to choose what marker the players would like (X or 0)
 def player_marker():
     marker = ' '
     while not (marker == 'X' or marker == 'O'):
@@ -21,18 +21,18 @@ def player_marker():
     else:
         return ('O', 'X')
 
-
+# Function to decide which player goes first
 def choose_first():
     if random.randint(0, 1) == 0:
         return 'Player 1'
     else:
         return 'Player 2'
 
-
+# Function to place the marker on the board
 def place_marker(board, marker, position2):
     board[position2 - 1] = marker
 
-
+# Function to check if a player has won
 def check_win(board, mark):
     return ((board[0] == mark and board[1] == mark and board[2] == mark) or  # Top row
             (board[3] == mark and board[4] == mark and board[5] == mark) or  # Middle Row
@@ -61,14 +61,14 @@ def full_board_check(board):
     return True  # Board is not full
 
 
-# Ask player where they want to play on the board
+# Function to ask where they want to play on the board
 def player_choice(board, player_turn):
     position1 = ' '
     while position1 not in '1 2 3 4 5 6 7 8 9'.split() or not space_check(board, position1):
         position1 = raw_input(player_turn + ", select a spot on the board that corresponds to a number (1-9): ")
     return int(position1)
 
-
+# Function to ask player to replay
 def replay():
     return raw_input("Would you like to play again? [yes/no]: ").lower().startswith("y")
 
